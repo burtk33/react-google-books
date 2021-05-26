@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Card from "../components/Card";
 import Form from "../components/Form";
 import Book from "../components/Book";
-import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
+import apiRoutes from "../utils/apiRoutes";
 
 class Home extends Component {
   state = {
@@ -21,7 +21,7 @@ class Home extends Component {
   };
 
   getBooks = () => {
-    API.getBooks(this.state.q)
+    apiRoutes.getBooks(this.state.q)
       .then(res =>
         this.setState({
           books: res.data
@@ -43,7 +43,7 @@ class Home extends Component {
   handleBookSave = id => {
     const book = this.state.books.find(book => book.id === id);
 
-    API.saveBook({
+    apiRoutes.saveBook({
       googleId: book.id,
       title: book.volumeInfo.title,
       subtitle: book.volumeInfo.subtitle,

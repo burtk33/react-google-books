@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card from "../components/Card";
 import Book from "../components/Book";
-import API from "../utils/API";
+import apiRoutes from "../utils/apiRoutes";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 
@@ -15,7 +15,7 @@ class Saved extends Component {
   }
 
   getSavedBooks = () => {
-    API.getSavedBooks()
+    apiRoutes.getSavedBooks()
       .then(res =>
         this.setState({
           books: res.data
@@ -25,7 +25,7 @@ class Saved extends Component {
   };
 
   handleBookDelete = id => {
-    API.deleteBook(id).then(res => this.getSavedBooks());
+    apiRoutes.deleteBook(id).then(res => this.getSavedBooks());
   };
 
   render() {
