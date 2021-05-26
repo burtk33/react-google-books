@@ -1,16 +1,22 @@
-import { Navbar, Nav } from "react-bootstrap";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Home from "./pages/Home";
+import Saved from "./pages/Saved";
+import NoMatch from "./pages/NoMatch";
+import Nav from "./components/Nav";
 
 function App() {
   return (
-    <div>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">Google Books</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="#home">Search</Nav.Link>
-          <Nav.Link href="#features">Saved</Nav.Link>
-        </Nav>
-      </Navbar>
-    </div>
+    <Router>
+      <div>
+        <Nav />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/saved" component={Saved} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
